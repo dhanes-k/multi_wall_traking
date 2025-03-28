@@ -9,7 +9,7 @@
     <title>Welcome To Rudra Reality</title>
 
     <!-- A-Frame and MindAR Libraries -->
-   
+
     <script src="https://aframe.io/releases/1.6.0/aframe.min.js"></script>
     <script src="https://cdn.jsdelivr.net/npm/mind-ar@1.2.5/dist/mindar-image-aframe.prod.js"></script>
     <script src="https://cdn.jsdelivr.net/gh/donmccurdy/aframe-extras@v7.0.0/dist/aframe-extras.min.js"></script>
@@ -17,7 +17,7 @@
     <script src="https://cdn.jsdelivr.net/gh/hiukim/mind-ar-js@1.1.4/dist/mindar-image-aframe.prod.js"></script>
     <script src="https://cdn.jsdelivr.net/npm/mind-ar@1.1.5/dist/mindar-image.prod.js"></script>
     <meta name="viewport" content="width=device-width, initial-scale=1" />
-    
+
     <!-- <link
       href="./assets/bootstrap-5.3.3/dist/css/bootstrap.min.css"
       rel="stylesheet"
@@ -36,8 +36,6 @@
     <!-- Gesture Control Scripts -->
     <script src="gesture-detector.js"></script>
     <script src="gesture-handler.js"></script>
-
-    
   </head>
   <style>
     /* Button Styles */
@@ -173,7 +171,6 @@
     html.a-fullscreen .a-canvas {
       background-color: rgba(0, 0, 0, 0) !important;
     }
-
   </style>
   <body>
     <!-- Scanning Overlay for AR Image Detection -->
@@ -204,7 +201,11 @@
         onclick="showDialog('./assets/img/image1.png', 'This is the first button content.')"
       /> -->
 
-      <img src="./assets/img/sangeethaicon.png" alt="Button 1" onclick="showDialog(null, './assets/vdo/sangeetha.mp4','')" />
+      <img
+        src="./assets/img/sangeethaicon.png"
+        alt="Button 1"
+        onclick="showDialog(null, './assets/vdo/sangeetha.mp4','')"
+      />
       <img src="./assets/img/image2.png" alt="Button 2" onclick="openQuiz()" />
     </div>
 
@@ -326,14 +327,21 @@
           />
         </svg>
       </div>
-      <img id="dialogImage" src="" alt="Dialog Image" style="display: none;">
-      <video id="dialogVideo" poster="./assets/img/thumbnail.jpg" class="my-5" controls autoplay style="display: none;">
-          <source id="videoSource" src="" type="video/mp4">
-          Your browser does not support the video tag.
+      <img id="dialogImage" src="" alt="Dialog Image" style="display: none" />
+      <video
+        id="dialogVideo"
+        poster="./assets/img/thumbnail.jpg"
+        class="my-5"
+        controls
+        autoplay
+        style="display: none"
+      >
+        <source id="videoSource" src="" type="video/mp4" />
+        Your browser does not support the video tag.
       </video>
       <p id="dialogText">Sample Text</p>
       <!-- <button class="close-btn" onclick="closeDialog()">Close</button> -->
-  </div>
+    </div>
 
     <!-- A-Frame Scene -->
     <a-scene
@@ -354,22 +362,28 @@
           id="model1"
           src="./assets/glb/sitar_new.glb"
         ></a-asset-item>
-        <img id="agra" src="./assets/img/agra_2.png" />
-        <img id="dance" src="./assets/img/dance.png" />
-        <img id="thabela" src="./assets/img/Thabela.png" />
-        <img id="js" src="./assets/img/js.png" />
+        <img id="templeArch" src="./assets/img/targets/Temple arch.png" />
+        <img id="agraharam" src="./assets/img/targets/Ag final.png" />
+        <img
+          id="sitarBhardhanatiyam"
+          src="./assets/img/targets/sitar_bhar.png"
+        />
+        <img id="thabela" src="./assets/img/targets/Thabela and dance .png" />
+        <img id="singers" src="./assets/img/targets/JS.png" />
+        <img id="map" src="./assets/img/targets/JS.png" />
         <audio id="mysound" src="./assets/sounds/sound.mp3"></audio>
         <audio id="mysound2" src="./assets/sounds/tabla.mp3"></audio>
         <audio id="mysound3" src="./assets/sounds/devam.mp3"></audio>
 
-        <a-asset-item id="model2" src="./assets/glb/particle.glb"></a-asset-item>
-        
-        
+        <a-asset-item
+          id="model2"
+          src="./assets/glb/particle.glb"
+        ></a-asset-item>
+
         <a-mixin
           id="animated"
           animation="property: position; to: 0 0 0.2; dur: 600; easing: easeInOutQuad; loop: true; dir: alternate"
         ></a-mixin>
-
       </a-assets>
 
       <!-- Camera -->
@@ -382,13 +396,13 @@
       </a-camera>
 
       <!-- Image Target -->
-      <a-entity mindar-image-target="targetIndex: 0" >
+      <a-entity mindar-image-target="targetIndex: 0">
         <!-- 3D Model -->
         <a-entity
           id="model1-entity"
           gltf-model="#model1"
           rotation="0 -90 -90"
-          position="0.1 0.20 -0.3"
+          position="0.1 0 -0.3"
           scale="0.01 0.01 0.01"
           gesture-handler
           animation-mixer
@@ -396,17 +410,95 @@
         </a-entity>
       </a-entity>
       <a-entity mindar-image-target="targetIndex: 1">
-  
         <a-image
-          src="#agra"
+          src="#templeArch"
           position="0 0 0"
-          scale="1 0.5 1"
+          scale="1 1.05 1"
           width="1"
           height="1"
         ></a-image>
       </a-entity>
 
-      <a-entity mindar-image-target="targetIndex: 2" play-audio="sound: #mysound">
+      <a-entity mindar-image-target="targetIndex: 2">
+        <a-image
+          src="#agraharam"
+          position="0 0 0"
+          scale="1 .48 1"
+          width="1"
+          height="1"
+        ></a-image>
+      </a-entity>
+
+      <a-entity
+        mindar-image-target="targetIndex: 3"
+        play-audio="sound: #mysound2"
+      >
+        <a-entity
+          id="model2-entity"
+          gltf-model="#model2"
+          rotation="0 90 0"
+          position="0 -0.2 0"
+          scale="0.01 0.01 0.01"
+          gesture-handler
+          animation-mixer
+        ></a-entity>
+        <a-image
+          src="#sitarBhardhanatiyam"
+          position="0 0 0"
+          scale="1 0.64 1"
+          width="1"
+          height="1"
+        ></a-image>
+        <a-sound
+          id="sound0"
+          src="#mysound"
+          autoplay="false"
+          position="0 0 0"
+          volume="1"
+        ></a-sound>
+      </a-entity>
+
+      <a-entity
+        mindar-image-target="targetIndex: 4"
+        play-audio="sound: #mysound2"
+      >
+        <a-image
+          src="#thabela"
+          position="0.02 0.05 0"
+          scale="1.1 0.6 1"
+          width="1"
+          height="1"
+        ></a-image>
+        <a-sound
+          id="sound0"
+          src="#mysound2"
+          autoplay="false"
+          position="0 0 0"
+          volume="1"
+        ></a-sound>
+      </a-entity>
+
+      <a-entity
+        mindar-image-target="targetIndex: 5"
+        play-audio="sound: #mysound3"
+      >
+        <a-image
+          src="#singers"
+          position="0.02 0.05 0"
+          scale="1.1 1.1 1"
+          width="1"
+          height="1"
+        ></a-image>
+        <a-sound
+          id="sound0"
+          src="#mysound3"
+          autoplay="false"
+          position="0 0 0"
+          volume="1"
+        ></a-sound>
+      </a-entity>
+
+      <!-- <a-entity mindar-image-target="targetIndex: 2" play-audio="sound: #mysound">
         <a-entity
         id="model2-entity"
         gltf-model="#model2"
@@ -426,9 +518,9 @@
         ></a-image>
         <a-sound id="sound0" src="#mysound" autoplay="false" position="0 0 0" volume="1"></a-sound>
        
-      </a-entity>
+      </a-entity> -->
 
-      <a-entity mindar-image-target="targetIndex: 3" play-audio="sound: #mysound2">
+      <!-- <a-entity mindar-image-target="targetIndex: 3" play-audio="sound: #mysound2">
   
         <a-image
           src="#thabela"
@@ -438,10 +530,9 @@
           height="1"
         ></a-image>
         <a-sound id="sound2" src="#mysound2" autoplay="false" position="0 0 0" volume="1"></a-sound>
-      </a-entity>
+      </a-entity> -->
 
-
-      <a-entity mindar-image-target="targetIndex: 4" play-audio="sound: #mysound3">
+      <!-- <a-entity mindar-image-target="targetIndex: 4" play-audio="sound: #mysound3">
   
         <a-image
           src="#js"
@@ -451,32 +542,31 @@
           height="1"
         ></a-image>
         <a-sound id="sound2" src="#mysound3" autoplay="false" position="0 0 0" volume="1"></a-sound>
-      </a-entity>
-
+      </a-entity> -->
     </a-scene>
 
     <script>
       document.addEventListener("DOMContentLoaded", function () {
         const videoEl = document.querySelector("#reality-video");
-    
+
         // Attempt to play the video if it's paused
         if (videoEl.paused) {
           videoEl.play().catch((error) => {
             console.log("Video play failed: ", error);
           });
         }
-    
+
         // Hide the splash screen after 6 seconds
         setTimeout(() => {
           document.getElementById("splash").style.display = "none";
         }, 6000);
-    
+
         // Uncomment if you want to show the scanning overlay after 6 seconds
         // setTimeout(() => {
         //   document.getElementById("example-scanning-overlay").style.display = "flex";
         // }, 6000);
       });
-    
+
       // AFRAME Component to handle audio playback on AR target detection
       AFRAME.registerComponent("play-audio", {
         schema: {
@@ -485,12 +575,12 @@
         init: function () {
           let entity = this.el;
           let sound = this.data.sound;
-    
+
           entity.addEventListener("targetFound", () => {
             console.log("Target Found! Playing audio...");
             sound.play();
           });
-    
+
           entity.addEventListener("targetLost", () => {
             console.log("Target Lost! Stopping audio...");
             sound.pause();
@@ -499,7 +589,7 @@
         },
       });
     </script>
-    
+
     <!-- <script src="./assets/bootstrap-5.3.3/dist/js/bootstrap.bundle.min.js"></script> -->
     <script src="./index.js"></script>
   </body>
