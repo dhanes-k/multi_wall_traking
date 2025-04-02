@@ -341,3 +341,56 @@ const fireWorksAnimation = () => {
     );
   }, 250);
 };
+
+// document.addEventListener("DOMContentLoaded", () => {
+//   const video = document.getElementById("video1");
+//   const target = document.querySelector("[mindar-image-target]");
+
+//   target.addEventListener("targetFound", () => {
+//       video.play();
+//   });
+
+//   target.addEventListener("targetLost", () => {
+//       video.pause();
+//   });
+// });
+document.addEventListener("DOMContentLoaded", () => {
+  const video = document.getElementById("video1");
+
+  video.addEventListener("loadeddata", () => {
+    console.log("Video is loaded and ready to play.");
+  });
+
+  const arVideo = document.querySelector("#arVideo");
+
+  arVideo.addEventListener("targetFound", () => {
+    if (video.readyState >= 2) { // Check if video is loaded
+      video.play().catch(error => {
+        console.error("Autoplay failed. User interaction needed:", error);
+      });
+    } else {
+      console.warn("Video not ready yet!");
+    }
+  });
+
+  arVideo.addEventListener("targetLost", () => {
+    video.pause();
+  });
+});
+
+AFRAME.registerComponent('video-handler', {
+  init: function () {
+    let video = document.getElementById("video1");
+    let texture = new THREE.VideoTexture(video);
+    this.el.getObject3D('mesh').material.map = texture;
+    this.el.getObject3D('mesh').material.needsUpdate = true;
+
+    this.el.addEventListener("targetFound", () => {
+      video.play();
+    });
+
+    this.el.addEventListener("targetLost", () => {
+      video.pause();
+    });
+  }
+});
